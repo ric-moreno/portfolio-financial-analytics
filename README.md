@@ -1,6 +1,6 @@
 # 📊 Portfolio Financial Analytics
 
-> **End-to-end data engineering pipeline for investment portfolio performance analysis vs. Ibovespa benchmark**
+> **Pipeline completo de engenharia de dados para análise de performance de carteira de investimentos vs. Ibovespa**
 
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-336791?style=flat&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
@@ -8,57 +8,56 @@
 
 ---
 
-## 📌 Overview
+## 📌 Visão Geral
 
-This project demonstrates a complete **data engineering and financial analytics pipeline** — from raw market data extraction to an interactive Power BI dashboard — applied to the Brazilian equity market.
+Este projeto demonstra um **pipeline completo de engenharia de dados e análise financeira** — da extração de dados brutos de mercado até um dashboard interativo no Power BI — aplicado ao mercado de capitais brasileiro.
 
-The pipeline evaluates the performance of a multi-asset investment portfolio against the **Ibovespa (^BVSP)** benchmark, computing risk-adjusted metrics such as **Sharpe Ratio**, **rolling volatility**, and **drawdown**, enriched with Brazilian macroeconomic indicators (SELIC, CDI, IPCA) from the **Banco Central do Brasil API**.
+O pipeline avalia a performance de uma carteira multi-ativo contra o benchmark **Ibovespa (^BVSP)**, calculando métricas ajustadas ao risco como **Índice de Sharpe**, **volatilidade móvel** e **drawdown**.
 
-This project was built as a portfolio piece showcasing the intersection of **data engineering skills** (Python, SQL, Star Schema modeling) and **financial domain knowledge** (CEA certification background).
+> Projeto desenvolvido como portfólio técnico, unindo competências em **engenharia de dados** (Python, SQL, modelagem Star Schema) com **conhecimento do domínio financeiro** — embasado pela certificação **CEA ANBIMA**.
 
 ---
 
-## 🏗️ Architecture
+## 🏗️ Arquitetura
 
 ```
 ┌─────────────────────┐     ┌──────────────────────┐     ┌──────────────────────┐     ┌──────────────────┐
-│   Data Sources      │────▶│  Extract & Transform  │────▶│  PostgreSQL (Star    │────▶│  Power BI        │
+│   Fontes de Dados   │────▶│  Extração e Transform │────▶│  PostgreSQL (Star    │────▶│  Power BI        │
 │                     │     │  (Python / Jupyter)   │     │  Schema)             │     │  Dashboard       │
 │  • yfinance API     │     │                       │     │                      │     │                  │
-│  • BCB API (macro)  │     │  • Feature engineering│     │  • fato_retornos_    │     │  • DAX measures  │
-│    SELIC/CDI/IPCA   │     │  • Returns calc       │     │    diarios           │     │  • DirectQuery   │
-│  • ^BVSP benchmark  │     │  • Rolling volatility │     │  • fato_retornos_    │     │  • KPI visuals   │
+│  • Benchmark ^BVSP  │     │  • Feature engineering│     │  • fato_retornos_    │     │  • Medidas DAX   │
+│                     │     │  • Cálculo de retornos│     │    diarios           │     │  • DirectQuery   │
+│                     │     │  • Volatilidade móvel │     │  • fato_retornos_    │     │  • Visuais KPI   │
 └─────────────────────┘     │  • Drawdown           │     │    acumulados        │     └──────────────────┘
-                            │  • Sharpe Ratio        │     │  • dim_metricas_     │
-                            └──────────────────────┘     │    risco             │
+                            │  • Índice de Sharpe   │     │  • dim_metricas_     │
+                            └──────────────────────┘      │    risco             │
                                                           └──────────────────────┘
 ```
 
 ---
 
-## 🚀 Features
+## 🚀 Funcionalidades
 
-- **Automated data extraction** from `yfinance` for Brazilian equities (VALE3, ITUB4, PETR4, etc.) and the Ibovespa index
-- **Macroeconomic enrichment** via Banco Central do Brasil REST API (SELIC, CDI, IPCA rates)
-- **Feature engineering**: daily returns, cumulative returns, 21-day rolling volatility (annualized), Sharpe Ratio, and drawdown from peak
-- **Star Schema** data model in PostgreSQL with pre-calculated analytical views
-- **Analytical SQL queries** with window functions (rolling stddev, running max for drawdown)
-- **Power BI dashboard** with DirectQuery/Import hybrid and DAX measures for interactive analysis
+- **Extração automatizada** via `yfinance` para ações brasileiras (VALE3, ITUB4, PETR4, etc.) e o índice Ibovespa
+- **Feature engineering**: retorno diário, retorno acumulado, volatilidade móvel de 21 dias (anualizada), Índice de Sharpe e drawdown a partir do pico
+- **Modelo Star Schema** no PostgreSQL com views analíticas pré-calculadas
+- **Queries SQL analíticas** com window functions (`STDDEV_POP`, `MAX` running, CTE)
+- **Dashboard no Power BI** com conexão híbrida DirectQuery/Import e medidas DAX para análise interativa
 
 ---
 
-## 📁 Project Structure
+## 📁 Estrutura do Projeto
 
 ```
 portfolio-financial-analytics/
 │
-├── extract_transform.ipynb      # Phase 1 – Data extraction, cleaning & feature engineering
-├── load_postgres.ipynb          # Phase 2 – Load transformed data into PostgreSQL Star Schema
-├── analytical_queries.sql       # Phase 2 – Analytical SQL queries & window functions
+├── extract_transform.ipynb      # Fase 1 – Extração, limpeza e feature engineering
+├── load_postgres.ipynb          # Fase 2 – Carga dos dados transformados no PostgreSQL
+├── analytical_queries.sql       # Fase 2 – Queries analíticas com window functions
 │
-├── fato_retornos_diarios.csv    # Fact table: daily returns per asset
-├── fato_retornos_acumulados.csv # Fact table: cumulative returns per asset
-├── dim_metricas_risco.csv       # Dimension table: risk metrics (Sharpe, volatility, drawdown)
+├── fato_retornos_diarios.csv    # Tabela fato: retornos diários por ativo
+├── fato_retornos_acumulados.csv # Tabela fato: retornos acumulados por ativo
+├── dim_metricas_risco.csv       # Tabela dimensão: métricas de risco (Sharpe, volatilidade, drawdown)
 │
 ├── .gitignore
 └── README.md
@@ -66,7 +65,7 @@ portfolio-financial-analytics/
 
 ---
 
-## 🗄️ Data Model (Star Schema)
+## 🗄️ Modelo de Dados (Star Schema)
 
 ```
                     ┌──────────────────────────┐
@@ -83,99 +82,99 @@ portfolio-financial-analytics/
           │                                         │
 ┌─────────▼──────────────┐           ┌──────────────▼──────────────┐
 │  fato_retornos_diarios  │           │  fato_retornos_acumulados    │
-│────────────────────────│           │────────────────────────────│
-│  date                  │           │  date                       │
-│  ativo                 │           │  ativo                      │
-│  retorno_diario        │           │  retorno_acumulado          │
-│  volatilidade_mov_21d  │           │  retorno_acumulado_pct      │
-└────────────────────────┘           └─────────────────────────────┘
+│────────────────────────│           │─────────────────────────────│
+│  date                  │           │  date                        │
+│  ativo                 │           │  ativo                       │
+│  retorno_diario        │           │  retorno_acumulado           │
+│  volatilidade_mov_21d  │           │  retorno_acumulado_pct       │
+└────────────────────────┘           └──────────────────────────────┘
 ```
 
 ---
 
-## 📈 Key Metrics Computed
+## 📈 Métricas Calculadas
 
-| Metric | Description | Method |
+| Métrica | Descrição | Método |
 |---|---|---|
-| **Daily Return** | Day-over-day percentage change | `pct_change()` |
-| **Cumulative Return** | Compounded total return from start | `(1 + r).cumprod() - 1` |
-| **Rolling Volatility** | 21-day annualized standard deviation | `STDDEV_POP` window function × √252 |
-| **Sharpe Ratio** | Risk-adjusted return vs. CDI (risk-free) | `(Rp - Rf) / σp` |
-| **Drawdown** | Decline from historical peak | Running MAX window function |
+| **Retorno Diário** | Variação percentual dia a dia | `pct_change()` |
+| **Retorno Acumulado** | Retorno total composto desde o início | `(1 + r).cumprod() - 1` |
+| **Volatilidade Móvel** | Desvio padrão anualizado de 21 dias | `STDDEV_POP` window × √252 |
+| **Índice de Sharpe** | Retorno ajustado ao risco vs. CDI | `(Rp - Rf) / σp` |
+| **Drawdown** | Queda a partir do pico histórico | Window function `MAX` running |
 
 ---
 
-## 🔧 Setup & Installation
+## 🔧 Configuração e Instalação
 
-### Prerequisites
+### Pré-requisitos
 
 - Python 3.10+
 - PostgreSQL 15+
-- Power BI Desktop (for dashboard)
+- Power BI Desktop (para o dashboard)
 
-### 1. Clone the repository
+### 1. Clonar o repositório
 
 ```bash
 git clone https://github.com/ric-moreno/portfolio-financial-analytics.git
 cd portfolio-financial-analytics
 ```
 
-### 2. Create a virtual environment and install dependencies
+### 2. Criar ambiente virtual e instalar dependências
 
 ```bash
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  # No Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-> **Key libraries:** `yfinance`, `pandas`, `numpy`, `psycopg2`, `python-dotenv`, `requests`
+> **Principais bibliotecas:** `yfinance`, `pandas`, `numpy`, `psycopg2`, `python-dotenv`, `requests`
 
-### 3. Configure environment variables
+### 3. Configurar variáveis de ambiente
 
-Create a `.env` file in the project root (never commit this file):
+Crie um arquivo `.env` na raiz do projeto (nunca faça commit deste arquivo):
 
 ```env
 DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=financial_analytics
-DB_USER=your_user
-DB_PASSWORD=your_password
+DB_USER=seu_usuario
+DB_PASSWORD=sua_senha
 ```
 
-### 4. Set up the PostgreSQL database
+### 4. Criar o banco de dados no PostgreSQL
 
 ```sql
 CREATE DATABASE financial_analytics;
 CREATE SCHEMA financial_analytics;
 ```
 
-### 5. Run the notebooks in order
+### 5. Executar os notebooks na ordem
 
 ```
-1. extract_transform.ipynb   → Extracts, cleans, and engineers features
-2. load_postgres.ipynb       → Creates schema and loads data into PostgreSQL
+1. extract_transform.ipynb   → Extrai, limpa e gera as features
+2. load_postgres.ipynb       → Cria o schema e carrega os dados no PostgreSQL
 ```
 
-### 6. Run analytical queries
+### 6. Executar as queries analíticas
 
-Open `analytical_queries.sql` in your SQL client (DBeaver, pgAdmin, etc.) to explore the pre-built window function queries for drawdown and rolling volatility analysis.
+Abra o arquivo `analytical_queries.sql` no seu cliente SQL (DBeaver, pgAdmin, etc.) para explorar as queries com window functions para drawdown e volatilidade móvel.
 
 ---
 
-## 📊 Power BI Dashboard
+## 📊 Dashboard Power BI
 
-The dashboard connects to PostgreSQL via **DirectQuery** (for real-time data) with an **Import** layer for computed aggregations.
+O dashboard conecta ao PostgreSQL via **DirectQuery** (dados em tempo real) com uma camada **Import** para agregações computadas.
 
-**DAX Measures included:**
+**Medidas DAX incluídas:**
 
 ```dax
--- Cumulative Return
+-- Retorno Acumulado
 Retorno Acumulado = CALCULATE(SUM(fato_retornos_acumulados[retorno_acumulado_pct]))
 
--- Annualized Volatility
+-- Volatilidade Anualizada
 Volatilidade Anual = AVERAGE(fato_retornos_diarios[volatilidade_mov_21d]) * SQRT(252)
 
--- Sharpe Ratio
+-- Índice de Sharpe
 Sharpe Ratio = DIVIDE([Retorno Acumulado] - [CDI_Acumulado], [Volatilidade Anual])
 
 -- Alpha vs Ibovespa
@@ -184,35 +183,33 @@ Alpha = [Retorno_Portfolio] - [Retorno_BVSP]
 
 ---
 
-## 🧠 Financial Context
+## 🧠 Contexto Financeiro
 
-This project is contextualized in the **Brazilian capital market**:
+Projeto contextualizado no **mercado de capitais brasileiro**:
 
-- **Benchmark:** Ibovespa (^BVSP) — the main Brazilian equity index
-- **Risk-free rate:** CDI / SELIC — used as the risk-free rate for Sharpe Ratio (sourced from BCB API)
-- **Inflation:** IPCA — used for real return adjustment
-- **Assets analyzed:** Blue-chip Brazilian equities (VALE3, ITUB4, PETR4, BBAS3, etc.)
+- **Benchmark:** Ibovespa (^BVSP) — principal índice de ações do Brasil
+- **Ativos analisados:** Blue chips brasileiras (VALE3, ITUB4, PETR4, BBAS3, entre outras)
 
-> This domain expertise is informed by a **CEA (Certificação de Especialista em Investimentos ANBIMA)** background, ensuring the financial metrics are correctly interpreted and applied.
+> O conhecimento do domínio financeiro é embasado pela certificação **CEA (Certificação de Especialista em Investimentos ANBIMA)**, garantindo a correta interpretação e aplicação das métricas financeiras.
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Stack Tecnológica
 
-| Layer | Technology |
+| Camada | Tecnologia |
 |---|---|
-| Data Extraction | Python, `yfinance`, BCB REST API |
-| Transformation | `pandas`, `numpy`, Jupyter Notebooks |
-| Storage | PostgreSQL 15 (Star Schema) |
-| Analytical SQL | Window functions, CTEs, pre-calculated views |
-| Visualization | Power BI (DirectQuery + DAX) |
-| Version Control | Git / GitHub |
+| Extração de Dados | Python, `yfinance` |
+| Transformação | `pandas`, `numpy`, Jupyter Notebooks |
+| Armazenamento | PostgreSQL 15 (Star Schema) |
+| SQL Analítico | Window functions, CTEs, views pré-calculadas |
+| Visualização | Power BI (DirectQuery + DAX) |
+| Controle de Versão | Git / GitHub |
 
 ---
 
-## 👤 Author
+## 👤 Autor
 
-**Ricardo Moreno**
+**Pedro Ricardo Moreno**  
 Data Analyst | Financial Analytics | CEA — ANBIMA
 
 [![GitHub](https://img.shields.io/badge/GitHub-ric--moreno-181717?style=flat&logo=github)](https://github.com/ric-moreno)
