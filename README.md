@@ -14,7 +14,7 @@ Este projeto demonstra um **pipeline completo de engenharia de dados e análise 
 
 O pipeline avalia a performance de uma carteira multi-ativo contra o benchmark **Ibovespa (^BVSP)**, calculando métricas ajustadas ao risco como **Índice de Sharpe**, **volatilidade móvel** e **drawdown**.
 
-> Projeto desenvolvido como portfólio técnico, unindo competências em **engenharia de dados** (Python, SQL, modelagem Star Schema) com **conhecimento do domínio financeiro** — embasado pela certificação **CEA ANBIMA**.
+> Projeto desenvolvido para construção de uma camada analítica de acompanhamento de performance e risco de investimentos.
 
 ---
 
