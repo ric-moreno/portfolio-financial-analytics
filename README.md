@@ -20,18 +20,14 @@ O pipeline avalia a performance de uma carteira multi-ativo contra o benchmark *
 
 ## 🏗️ Arquitetura
 
-```
-┌─────────────────────┐     ┌──────────────────────┐     ┌──────────────────────┐     ┌──────────────────┐
-│   Fontes de Dados   │────▶│  Extração e Transform │────▶│  PostgreSQL (Star    │────▶│  Power BI        │
-│                     │     │  (Python / Jupyter)   │     │  Schema)             │     │  Dashboard       │
-│  • yfinance API     │     │                       │     │                      │     │                  │
-│  • Benchmark ^BVSP  │     │  • Feature engineering│     │  • fato_retornos_    │     │  • Medidas DAX   │
-│                     │     │  • Cálculo de retornos│     │    diarios           │     │  • DirectQuery   │
-│                     │     │  • Volatilidade móvel │     │  • fato_retornos_    │     │  • Visuais KPI   │
-└─────────────────────┘     │  • Drawdown           │     │    acumulados        │     └──────────────────┘
-                            │  • Índice de Sharpe   │     │  • dim_metricas_     │
-                            └──────────────────────┘     │    risco             │
-                                                          └──────────────────────┘
+```mermaid
+flowchart LR
+    A["📦 **Fontes de Dados**\n──────────────────\n• yfinance API\n• API BCB\n  SELIC/CDI/IPCA\n• Benchmark ^BVSP"]
+    B["⚙️ **Extração e Transform**\n──────────────────\n• Feature engineering\n• Cálculo de retornos\n• Volatilidade móvel\n• Drawdown\n• Índice de Sharpe"]
+    C["🗄️ **PostgreSQL**\n**Star Schema**\n──────────────────\n• fato_retornos_diarios\n• fato_retornos_acumulados\n• dim_metricas_risco"]
+    D["📊 **Power BI**\n**Dashboard**\n──────────────────\n• Medidas DAX\n• DirectQuery\n• Visuais KPI"]
+
+    A --> B --> C --> D
 ```
 
 ---
@@ -69,25 +65,25 @@ portfolio-financial-analytics/
 
 ```
                     ┌──────────────────────────┐
-                    │   dim_metricas_risco      │
+                    │   dim_metricas_risco     │
                     │──────────────────────────│
-                    │  ativo (PK)               │
-                    │  sharpe_ratio             │
-                    │  volatilidade_anual       │
-                    │  max_drawdown             │
-                    │  retorno_total            │
+                    │  ativo (PK)              │
+                    │  sharpe_ratio            │
+                    │  volatilidade_anual      │
+                    │  max_drawdown            │
+                    │  retorno_total           │
                     └──────────┬───────────────┘
                                │
           ┌────────────────────┼────────────────────┐
           │                                         │
 ┌─────────▼──────────────┐           ┌──────────────▼──────────────┐
-│  fato_retornos_diarios  │           │  fato_retornos_acumulados    │
+│  fato_retornos_diarios │           │  fato_retornos_acumulados   │
 │────────────────────────│           │─────────────────────────────│
-│  date                  │           │  date                        │
-│  ativo                 │           │  ativo                       │
-│  retorno_diario        │           │  retorno_acumulado           │
-│  volatilidade_mov_21d  │           │  retorno_acumulado_pct       │
-└────────────────────────┘           └──────────────────────────────┘
+│  date                  │           │  date                       │
+│  ativo                 │           │  ativo                      │
+│  retorno_diario        │           │  retorno_acumulado          │
+│  volatilidade_mov_21d  │           │  retorno_acumulado_pct      │
+└────────────────────────┘           └─────────────────────────────┘
 ```
 
 ---
