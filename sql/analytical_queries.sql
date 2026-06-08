@@ -50,6 +50,6 @@ SELECT
     ROUND((pico_historico * 100)::NUMERIC, 2) as pico_historico_pct,
     ROUND((((retorno_acumulado - pico_historico) / (1 + pico_historico)) * 100)::NUMERIC, 2) as drawdown_atual_pct
 FROM running_max
-WHERE ativo = 'ITUB4.SA'
+WHERE ativo = 'VALE3.SA'
 ORDER BY date DESC
 LIMIT 10;
