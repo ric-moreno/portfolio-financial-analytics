@@ -104,6 +104,20 @@ portfolio-financial-analytics/
 | **Drawdown** | Queda a partir do pico histórico | Window function `MAX` running |
 
 ---
+## 📊 Tabela Executiva
+
+| Indicador | Resultado |
+|------------|------------|
+| Melhor Retorno Acumulado | PETR4 (+2.202,63%) |
+| Melhor Sharpe Ratio | PETR4 (0,80) |
+| Maior Volatilidade | PETR4 (43,60%) |
+| Maior Drawdown | PETR4 (-63,36%) |
+| Menor Drawdown | VALE3 (-43,72%) |
+| Retorno da Carteira | +1049,39% |
+| Retorno Ibovespa | +301,08% |
+| Alpha da Carteira | +748,31 p.p. |
+
+>Período analisado: 01/01/2016 a 05/06/2026
 
 ## 🔧 Configuração e Instalação
 
