@@ -34,7 +34,7 @@ flowchart LR
 
 ## 🚀 Funcionalidades
 
-- **Extração automatizada** via `yfinance` para ações brasileiras (VALE3, ITUB4, PETR4, etc.) e o índice Ibovespa
+- **Extração automatizada** via `yfinance` para ações brasileiras e o índice Ibovespa (benchmark)
 - **Feature engineering**: retorno diário, retorno acumulado, volatilidade móvel de 21 dias (anualizada), Índice de Sharpe e drawdown a partir do pico
 - **Modelo Star Schema** no PostgreSQL com views analíticas pré-calculadas
 - **Queries SQL analíticas** com window functions (`STDDEV_POP`, `MAX` running, CTE)
@@ -108,16 +108,16 @@ portfolio-financial-analytics/
 
 | Indicador | Resultado |
 |------------|------------|
-| Melhor Retorno Acumulado | PETR4 (+2.202,63%) |
-| Melhor Sharpe Ratio | PETR4 (0,80) |
-| Maior Volatilidade | PETR4 (43,60%) |
-| Maior Drawdown | PETR4 (-63,36%) |
-| Menor Drawdown | VALE3 (-43,72%) |
-| Retorno da Carteira | +1049,39% |
-| Retorno Ibovespa | +301,08% |
-| Alpha da Carteira | +748,31 p.p. |
+| Melhor Retorno Acumulado | PETR4 (+407,65%) |
+| Melhor Sharpe Ratio | PETR4 (0,86) |
+| Maior Volatilidade | B3SA3 (36,45%) |
+| Maior Drawdown | B3SA3 (-49,92%) |
+| Menor Drawdown | ITSA4 (-25,63%) |
+| Retorno da Carteira | +107,45% |
+| Retorno Ibovespa | +42,56% |
+| Alpha da Carteira | +64,89 p.p. |
 
->Período analisado: 01/01/2016 a 05/06/2026
+>Período analisado: 01/01/2021 a 05/06/2026 - Horizonte: 5 anos
 
 ## 🔧 Configuração e Instalação
 
@@ -203,7 +203,7 @@ Alpha = [Retorno_Portfolio] - [Retorno_BVSP]
 Projeto contextualizado no **mercado de capitais brasileiro**:
 
 - **Benchmark:** Ibovespa (^BVSP) — principal índice de ações do Brasil
-- **Ativos analisados:** Blue chips brasileiras (VALE3, ITUB4, PETR4, BBAS3, entre outras)
+- **Ativos analisados:** 10 ações mais representativas do Índice IBovespa: VALE3, ITUB4, PETR4,	BBAS3, BBDC4, SBSP3, B3SA3, ITSA4, ABEV3, WEGE3
 
 > O conhecimento do domínio financeiro é embasado pela certificação **CEA (Certificação de Especialista em Investimentos ANBIMA)**, garantindo a correta interpretação e aplicação das métricas financeiras.
 
