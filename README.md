@@ -47,16 +47,21 @@ flowchart LR
 ```
 portfolio-financial-analytics/
 │
-├── extract_transform.ipynb      # Fase 1 – Extração, limpeza e feature engineering
-├── load_postgres.ipynb          # Fase 2 – Carga dos dados transformados no PostgreSQL
-├── analytical_queries.sql       # Fase 2 – Queries analíticas com window functions
+├── data/
+│   ├── fato_retornos_diarios.csv
+│   ├── fato_retornos_acumulados.csv
+│   └── dim_metricas_risco.csv
 │
-├── fato_retornos_diarios.csv    # Tabela fato: retornos diários por ativo
-├── fato_retornos_acumulados.csv # Tabela fato: retornos acumulados por ativo
-├── dim_metricas_risco.csv       # Tabela dimensão: métricas de risco (Sharpe, volatilidade, drawdown)
+├── notebooks/
+│   ├── extract_transform.ipynb
+│   └── load_postgres.ipynb
 │
-├── .gitignore
-└── README.md
+├── sql/
+│   └── analytical_queries.sql
+│
+├── README.md
+├── requirements.txt
+└── .gitignore
 ```
 
 ---
