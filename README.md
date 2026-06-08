@@ -253,4 +253,5 @@ Projeto contextualizado no **mercado de capitais brasileiro**:
 **Pedro Ricardo Moreno**  
 Data Analyst | Financial Analytics | CEA — ANBIMA
 
-[![LinkedIn](https://shields.io)](https://www.linkedin.com/in/pedroricardomoreno/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/pedroricardomoreno/)
+
