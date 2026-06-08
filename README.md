@@ -104,7 +104,31 @@ portfolio-financial-analytics/
 | **Drawdown** | Queda a partir do pico histórico | Window function `MAX` running |
 
 ---
-## 📊 Tabela Executiva
+
+## 📌 Principais Insights
+
+🏆 Performance
+- PETR4 foi o ativo de maior destaque da carteira, acumulando +407,65% em 5 anos.
+- SBSP3 também apresentou excelente desempenho, com +278,57% de retorno acumulado.
+- O Ibovespa acumulou +42,56% no mesmo período.
+
+⚖️ Eficiência Risco-Retorno
+- PETR4 apresentou o melhor Sharpe Ratio (0,86), indicando a melhor relação entre retorno e risco dentre os ativos analisados.
+- O resultado sugere que o retorno obtido compensou adequadamente a volatilidade assumida pelo investidor.
+  
+📈 Risco
+- B3SA3 apresentou a maior volatilidade anualizada da carteira (36,45%), indicando maior sensibilidade às oscilações de mercado.
+- Em contrapartida, o ativo também registrou o pior desempenho absoluto da carteira (-7,33%).
+  
+📉 Preservação de Capital
+- O maior drawdown ocorreu em B3SA3 (-49,92%), significando que o ativo perdeu quase metade do seu valor entre um pico e o fundo subsequente.
+- ITSA4 apresentou o menor drawdown (-25,63%), demonstrando maior resiliência durante períodos de estresse de mercado.
+  
+🎯 Benchmark
+- A carteira apresentou retorno médio de 107,45%, contra 42,56% do Ibovespa.
+- Isso representa um Alpha de +64,89 pontos percentuais, indicando geração significativa de valor acima do benchmark.
+
+  ## 📊 Tabela Executiva
 
 | Indicador | Resultado |
 |------------|------------|
@@ -118,6 +142,8 @@ portfolio-financial-analytics/
 | Alpha da Carteira | +64,89 p.p. |
 
 >Período analisado: 01/01/2021 a 05/06/2026 - Horizonte: 5 anos
+
+---
 
 ## 🔧 Configuração e Instalação
 
