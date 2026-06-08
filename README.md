@@ -128,7 +128,7 @@ portfolio-financial-analytics/
 - A carteira apresentou retorno médio de 107,45%, contra 42,56% do Ibovespa.
 - Isso representa um Alpha de +64,89 pontos percentuais, indicando geração significativa de valor acima do benchmark.
 
-  ## 📊 Tabela Executiva
+## 📊 Tabela Executiva
 
 | Indicador | Resultado |
 |------------|------------|
