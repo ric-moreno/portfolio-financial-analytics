@@ -23,7 +23,6 @@ WITH returns_with_rolling_vol AS (
 SELECT 
     date,
     ativo,
-    -- Casting explícito para NUMERIC antes do ROUND
     ROUND((retorno_diario * 100)::NUMERIC, 4) as retorno_diario_pct,
     ROUND((std_dev_21d * SQRT(252) * 100)::NUMERIC, 2) as volatilidade_mov_21d_anual_pct
 FROM returns_with_rolling_vol
