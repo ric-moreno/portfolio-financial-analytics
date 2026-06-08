@@ -22,7 +22,7 @@ O pipeline avalia a performance de uma carteira multi-ativo contra o benchmark *
 
 ```mermaid
 flowchart LR
-    A["📦 **Fontes de Dados**\n──────────────────\n• yfinance API\n• API BCB\n  SELIC/CDI/IPCA\n• Benchmark ^BVSP"]
+    A["📦 **Fontes de Dados**\n──────────────────\n• yfinance API\n• Benchmark ^BVSP"]
     B["⚙️ **Extração e Transform**\n──────────────────\n• Feature engineering\n• Cálculo de retornos\n• Volatilidade móvel\n• Drawdown\n• Índice de Sharpe"]
     C["🗄️ **PostgreSQL**\n**Star Schema**\n──────────────────\n• fato_retornos_diarios\n• fato_retornos_acumulados\n• dim_metricas_risco"]
     D["📊 **Power BI**\n**Dashboard**\n──────────────────\n• Medidas DAX\n• DirectQuery\n• Visuais KPI"]
@@ -47,16 +47,21 @@ flowchart LR
 ```
 portfolio-financial-analytics/
 │
-├── extract_transform.ipynb      # Fase 1 – Extração, limpeza e feature engineering
-├── load_postgres.ipynb          # Fase 2 – Carga dos dados transformados no PostgreSQL
-├── analytical_queries.sql       # Fase 2 – Queries analíticas com window functions
+├── data/
+│   ├── fato_retornos_diarios.csv
+│   ├── fato_retornos_acumulados.csv
+│   └── dim_metricas_risco.csv
 │
-├── fato_retornos_diarios.csv    # Tabela fato: retornos diários por ativo
-├── fato_retornos_acumulados.csv # Tabela fato: retornos acumulados por ativo
-├── dim_metricas_risco.csv       # Tabela dimensão: métricas de risco (Sharpe, volatilidade, drawdown)
+├── notebooks/
+│   ├── extract_transform.ipynb
+│   └── load_postgres.ipynb
 │
-├── .gitignore
-└── README.md
+├── sql/
+│   └── analytical_queries.sql
+│
+├── README.md
+├── requirements.txt
+└── .gitignore
 ```
 
 ---
@@ -99,6 +104,20 @@ portfolio-financial-analytics/
 | **Drawdown** | Queda a partir do pico histórico | Window function `MAX` running |
 
 ---
+## 📊 Tabela Executiva
+
+| Indicador | Resultado |
+|------------|------------|
+| Melhor Retorno Acumulado | PETR4 (+2.202,63%) |
+| Melhor Sharpe Ratio | PETR4 (0,80) |
+| Maior Volatilidade | PETR4 (43,60%) |
+| Maior Drawdown | PETR4 (-63,36%) |
+| Menor Drawdown | VALE3 (-43,72%) |
+| Retorno da Carteira | +1049,39% |
+| Retorno Ibovespa | +301,08% |
+| Alpha da Carteira | +748,31 p.p. |
+
+>Período analisado: 01/01/2016 a 05/06/2026
 
 ## 🔧 Configuração e Instalação
 
