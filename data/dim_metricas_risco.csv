@@ -1,6 +1,12 @@
 Ativo,Retorno_Acumulado_%,Volatilidade_Anual_%,Sharpe_Ratio,Max_Drawdown_%,Tipo
-BBAS3.SA,409.56,38.25,0.31,-58.29,Carteira
-ITUB4.SA,430.99,29.81,0.29,-44.34,Carteira
-PETR4.SA,2202.63,43.6,0.8,-63.36,Carteira
-VALE3.SA,1154.36,39.97,0.6,-43.72,Carteira
-^BVSP,301.08,23.2,0.14,-46.82,Benchmark
+ABEV3.SA,35.78,24.51,-0.22,-34.88,Carteira
+B3SA3.SA,-7.33,36.45,-0.25,-49.92,Carteira
+BBAS3.SA,55.0,27.64,-0.06,-37.19,Carteira
+BBDC4.SA,15.95,29.94,-0.23,-46.04,Carteira
+ITSA4.SA,114.1,22.9,0.17,-25.63,Carteira
+ITUB4.SA,97.8,25.66,0.12,-35.87,Carteira
+PETR4.SA,407.65,33.74,0.86,-39.1,Carteira
+SBSP3.SA,278.57,29.46,0.66,-26.67,Carteira
+VALE3.SA,48.89,30.05,-0.06,-41.34,Carteira
+WEGE3.SA,28.12,31.05,-0.14,-49.51,Carteira
+^BVSP,42.56,17.95,-0.32,-26.5,Benchmark
